@@ -9,8 +9,6 @@
     padding-left: 20px;
 }
 
-.file-picker-select-group {}
-
 iframe {
     display: none;
     left: 100%;
@@ -100,7 +98,8 @@ html {
 
 #app {
     height: 100vh;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
     max-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -199,7 +198,7 @@ html {
 }
 
 .edit-image-title {
-    width: 100vw;
+    width: 95vw;
     position: relative;
     box-sizing: border-box;
     top: 0;
@@ -212,11 +211,11 @@ html {
 }
 
 .item-holder:nth-child(3n+2) .edit-image-title {
-    left: calc(-15.4vw + -70%);
+    left: calc(-15vw + -70%);
 }
 
 .item-holder:nth-child(3n+3) .edit-image-title {
-    left: calc(-76.7vw + 33%);
+    left: calc(-74.7vw + 33%);
 }
 
 .edit-title-section {
@@ -277,4 +276,42 @@ html {
 
 .blocked {
     pointer-events: none;
+}
+
+/* MS Edge layout */
+@supports (-ms-ime-align: auto) {
+
+    .holder {
+        overflow-x: hidden;
+    }
+    .item-holder:nth-child(3n+2) .edit-image-title {
+        left: calc(-16vw + -70%);
+    }
+    .item-holder:nth-child(3n+3) .edit-image-title {
+        left: calc(-75.1vw + 33%);
+    }
+    .edit-image-title {
+        left: -22px;
+        padding-left: 35px;
+        width: 95vw;
+    }
+}
+
+/* IE11 layout */
+
+@media screen and (-ms-high-contrast: none) {
+
+    .holder {
+        overflow-x: hidden;
+    }
+    .item-holder:nth-child(3n+2) .edit-image-title {
+        left: calc(-13vw + -70%);
+    }
+    .item-holder:nth-child(3n+3) .edit-image-title {
+        left: calc(-75vw + 33%);
+    }
+    .edit-image-title {
+        padding-left: 40px;
+        width: 95vw;
+    }
 }

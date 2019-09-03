@@ -1,11 +1,9 @@
 Fliplet.Widget.instance('image-gallery', function(data) {
-
-  const photoswipeTemplate = Fliplet.Widget.Templates['templates.photoswipe'];
+  var photoswipeTemplate = Fliplet.Widget.Templates['templates.photoswipe'];
+  var wallSelector = '[data-image-gallery-id=' + data.id + '] .wall:not("[data-mce-bogus] [data-image-gallery-id=' + data.id + '] .wall")';
 
   function initGallery() {
-    const WALL_SELECTOR = '[data-image-gallery-id=' + data.id + '] .wall:not("[data-mce-bogus] [data-image-gallery-id=' + data.id + '] .wall")';
-
-    var wall = new Freewall(WALL_SELECTOR);
+    var wall = new Freewall(wallSelector);
 
     wall.reset({
       selector: '.brick',
@@ -24,23 +22,54 @@ Fliplet.Widget.instance('image-gallery', function(data) {
     });
 
     if (!Fliplet.Env.get('interact')) {
-      $(WALL_SELECTOR + ' .brick img').click(function() {
+      $(wallSelector + ' .brick img').click(function() {
         var $clickedBrick = $(this)[0].parentElement;
+
         data.options = data.options || {}
         data.options.index = $clickedBrick.index - 1
 
-        Fliplet.Navigate.previewImages(data);
+        var gallery = Fliplet.Navigate.previewImages(data);
+
+        gallery.listen('afterChange', function(context) {
+          Fliplet.Page.Context.update({
+            galleryId: data.id,
+            galleryOpenIndex: this.getCurrentIndex()
+          });
+        });
+
+        gallery.listen('close', function() {
+          Fliplet.Page.Context.remove(['galleryId', 'galleryOpenIndex']);
+        });
       });
     }
 
     wall.fitWidth();
+    parseQueries();
 
-
-    $(WALL_SELECTOR + ' .brick img').on('load', function() {
-      $(WALL_SELECTOR).trigger('resize');
+    $(wallSelector + ' .brick img').on('load', function() {
+      $(wallSelector).trigger('resize');
     });
 
     return wall;
+  }
+
+  function parseQueries() {
+    var query = Fliplet.Navigate.query;
+
+    if (!query.galleryOpenIndex) {
+      return;
+    }
+
+    if (query.galleryId && query.galleryId != data.id) {
+      return;
+    }
+
+    if (query.galleryId) {
+      $(wallSelector + ' .brick:eq(' + query.galleryOpenIndex + ') img').click();
+      return;
+    }
+
+    $('[data-image-gallery-id] .wall:not("[data-mce-bogus] [data-image-gallery-id] .wall") .brick:eq(' + query.galleryOpenIndex + ') img').click();
   }
 
   // Appearance change Hook
