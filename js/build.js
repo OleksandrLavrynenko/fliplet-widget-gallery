@@ -27,6 +27,7 @@ Fliplet.Widget.instance('image-gallery', function(data) {
         $bricks = $bricks.add($brick);
       });
 
+      $wall.empty();
       $wall.append($bricks);
     }
 
