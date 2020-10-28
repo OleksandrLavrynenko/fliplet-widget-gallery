@@ -1,0 +1,7 @@
+{
+  "extends": "fliplet",
+  "globals": {
+    "$DARKZONE": true,
+    "Freewall": true
+  }
+}  

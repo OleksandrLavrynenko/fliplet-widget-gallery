@@ -1,12 +1,16 @@
-button {
+.image-gallery button {
   font-weight: bold;
 }
 
-.brick {
+.image-gallery .wall {
+  font-size: 0;
+}
+
+.image-gallery .brick {
   width: 200px;
 }
 
-.brick > img {
+.image-gallery .brick > img {
   cursor: pointer;
 }
 
@@ -24,7 +28,6 @@ button {
   display: flex;
 }
 
-
 .image-gallery-placeholder.placeholder {
   opacity: 0.5;
   cursor: pointer;
@@ -34,4 +37,3 @@ button {
   -webkit-user-modify: read-only !important;
   text-align: center;
 }
-

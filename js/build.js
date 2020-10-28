@@ -1,36 +1,73 @@
 Fliplet.Widget.instance('image-gallery', function(data) {
+  var $container = $(this);
   var photoswipeTemplate = Fliplet.Widget.Templates['templates.photoswipe'];
   var wallSelector = '[data-image-gallery-id=' + data.id + '] .wall:not("[data-mce-bogus] [data-image-gallery-id=' + data.id + '] .wall")';
 
-  function initGallery() {
+  function initGallery(options) {
+    var $wall = $(wallSelector);
+    var $bricks = $();
+
+    options = options || {};
+
+    if (options.appendImages) {
+      // Update remote image URLs to authenticated URLs
+      _.forEach(data.images, function(image) {
+        var $img = $('<img />');
+
+        image.url = Fliplet.Media.authenticate(image.url);
+        $img.on('load', function() {
+          reloadWall();
+        });
+        $img.attr('src', image.url);
+        $img.attr('alt', image.title);
+
+        var $brick = $('<div class="brick"></div>');
+
+        $brick.append($img);
+        $bricks = $bricks.add($brick);
+      });
+
+      $wall.empty();
+      $wall.append($bricks);
+    }
+
     var wall = new Freewall(wallSelector);
+
+    function reloadWall() {
+      if (!wall) {
+        return;
+      }
+
+      wall.fitWidth();
+      wall.refresh();
+    }
 
     wall.reset({
       selector: '.brick',
       animate: true,
       cellW: function() {
         var width = $('body').width();
+
         return width >= 640 ? 200 : 135;
       },
       cellH: 'auto',
       gutterX: 10,
       gutterY: 10,
       onResize: function() {
-        wall.fitWidth();
-        wall.refresh();
+        reloadWall();
       }
     });
 
     if (!Fliplet.Env.get('interact')) {
-      $(wallSelector + ' .brick img').click(function() {
+      $container.on('click', '.brick img', function() {
         var $clickedBrick = $(this)[0].parentElement;
 
-        data.options = data.options || {}
-        data.options.index = $clickedBrick.index - 1
+        data.options = data.options || {};
+        data.options.index = $clickedBrick.index - 1;
 
         var gallery = Fliplet.Navigate.previewImages(data);
 
-        gallery.listen('afterChange', function(context) {
+        gallery.listen('afterChange', function() {
           Fliplet.Page.Context.update({
             galleryId: data.id,
             galleryOpenIndex: this.getCurrentIndex()
@@ -45,10 +82,6 @@ Fliplet.Widget.instance('image-gallery', function(data) {
 
     wall.fitWidth();
     parseQueries();
-
-    $(wallSelector + ' .brick img').on('load', function() {
-      $(wallSelector).trigger('resize');
-    });
 
     return wall;
   }
@@ -73,9 +106,11 @@ Fliplet.Widget.instance('image-gallery', function(data) {
   }
 
   // Appearance change Hook
-  Fliplet.Hooks.on('appearanceChanged', function () {
+  Fliplet.Hooks.on('appearanceChanged', function() {
     initGallery();
   });
 
-  initGallery();
+  Fliplet().then(function() {
+    initGallery({ appendImages: true });
+  });
 });
