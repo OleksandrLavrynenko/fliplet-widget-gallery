@@ -21,11 +21,6 @@ iframe {
     opacity: 0.5;
 }
 
-.header-wrapper p {
-    flex: none;
-    margin: 0;
-}
-
 .result {
     display: none;
 }
