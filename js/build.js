@@ -1,5 +1,8 @@
 Fliplet.Widget.instance('image-gallery', function(data) {
   var $container = $(this);
+
+  $(this).translate();
+
   var photoswipeTemplate = Fliplet.Widget.Templates['templates.photoswipe'];
   var wallSelector = '[data-image-gallery-id=' + data.id + '] .wall:not("[data-mce-bogus] [data-image-gallery-id=' + data.id + '] .wall")';
 

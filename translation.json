@@ -1,7 +1,15 @@
 {
     "widgets": {
         "gallery": {
-            
+            "dataSource": {
+                "configuration": {
+                    "title": "Configure your gallery 1 <a href=\"https://help.fliplet.com/gallery-component/\" class=\"help-icon\" target=\"_blank\"><i class=\"fa fa-question-circle-o\"></i></a>",
+                    "continue": "Continue building your gallery by adding new images",
+                    "mismatch": "Set up a gallery by adding new images",
+                    "action": "Add images",
+                    "instruction": "Drag Images to reorder them."
+                }
+            }
         }
     }
 }
