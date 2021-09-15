@@ -3,9 +3,9 @@
         "gallery": {
             "dataSource": {
                 "placeholder": {
-                    "title": "Gallery component 1",
-                    "description": "Start editing the Gallery component and the images will appear here. 1",
-                    "instruction": "1 Preview your app on different devices using the <strong>Change device preview</strong> button at the top."
+                    "title": "Gallery component",
+                    "description": "Start editing the Gallery component and the images will appear here.",
+                    "instruction": "Preview your app on different devices using the <strong>Change device preview</strong> button at the top."
                 }
             }
         }
