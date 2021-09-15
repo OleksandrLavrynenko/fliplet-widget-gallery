@@ -1,6 +1,6 @@
 <div id="app" data-my-widget-id="{{id}}">
   <header>
-    <p data-translate="[html]widgets.gallery.dataSource.configuration.title">
+    <p>
       Configure your gallery
       <a href="https://help.fliplet.com/gallery-component/" class="help-icon" target="_blank">
         <i class="fa fa-question-circle-o"></i>
@@ -12,12 +12,12 @@
     <div class="help-text">
 
     </div>
-    <div id="add-image" class="btn btn-primary add-image-button" data-translate="widgets.gallery.dataSource.configuration.action">
+    <div id="add-image" class="btn btn-primary add-image-button">
       Add images
     </div>
   </div>
   {{#if images}}
-  <span class="drag-tip" data-translate="widgets.gallery.dataSource.configuration.instruction">
+  <span class="drag-tip">
     Drag Images to reorder them.
   </span>
   {{/if}}
@@ -27,13 +27,13 @@
     <div class="edit-title-section" style="display: none;">
       <div class="edit-image-title">
         <div class="title">
-          <span data-translate="widgets.gallery.dataSource.edit.title">
+          <span>
             Image Title
           </span>
           <i id="editClose" class="fa fa-times"></i>
         </div>
-        <input id="edit-input" type="text" class="form-control" data-translate="[placeholder]widgets.gallery.dataSource.edit.titlePlaceholder" placeholder="Enter your image title">
-        <div id="edit-button" class="btn btn-primary edit-button" data-translate="[html]widgets.gallery.dataSource.edit.action"><i class="fa fa-pencil fa-3"></i> Edit image</div>
+        <input id="edit-input" type="text" class="form-control" placeholder="Enter your image title">
+        <div id="edit-button" class="btn btn-primary edit-button"><i class="fa fa-pencil fa-3"></i> Edit image</div>
       </div>
     </div>
   </div>

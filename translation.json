@@ -2,17 +2,10 @@
     "widgets": {
         "gallery": {
             "dataSource": {
-                "configuration": {
-                    "title": "Configure your gallery 1 <a href=\"https://help.fliplet.com/gallery-component/\" class=\"help-icon\" target=\"_blank\"><i class=\"fa fa-question-circle-o\"></i></a>",
-                    "continue": "Continue building your gallery by adding new images",
-                    "mismatch": "Set up a gallery by adding new images",
-                    "action": "Add images",
-                    "instruction": "Drag Images to reorder them."
-                },
-                "edit": {
-                    "title": "Image Title",
-                    "titlePlaceholder": "Enter your image title",
-                    "action": "<i class=\"fa fa-pencil fa-3\"></i> Edit image"
+                "placeholder": {
+                    "title": "Gallery component 1",
+                    "description": "Start editing the Gallery component and the images will appear here. 1",
+                    "instruction": "1 Preview your app on different devices using the <strong>Change device preview</strong> button at the top."
                 }
             }
         }

@@ -93,8 +93,8 @@ function selectNextImage(e) {
 
 function changeWidgetHeader() {
   var headerText = data.images.length ?
-    T('widgets.gallery.dataSource.configuration.continue'):
-    T('widgets.gallery.dataSource.configuration.mismatch');
+    'Continue building your gallery by adding new images' :
+    'Set up a gallery by adding new images';
   $('.help-text').text(headerText);
 }
 
