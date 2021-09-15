@@ -8,6 +8,11 @@
                     "mismatch": "Set up a gallery by adding new images",
                     "action": "Add images",
                     "instruction": "Drag Images to reorder them."
+                },
+                "edit": {
+                    "title": "Image Title",
+                    "titlePlaceholder": "Enter your image title",
+                    "action": "<i class=\"fa fa-pencil fa-3\"></i> Edit image"
                 }
             }
         }

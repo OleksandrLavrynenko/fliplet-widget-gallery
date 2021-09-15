@@ -17,7 +17,7 @@
     </div>
   </div>
   {{#if images}}
-  <span class="drag-tip">
+  <span class="drag-tip" data-translate="widgets.gallery.dataSource.configuration.instruction">
     Drag Images to reorder them.
   </span>
   {{/if}}
@@ -27,13 +27,13 @@
     <div class="edit-title-section" style="display: none;">
       <div class="edit-image-title">
         <div class="title">
-          <span>
+          <span data-translate="widgets.gallery.dataSource.edit.title">
             Image Title
           </span>
           <i id="editClose" class="fa fa-times"></i>
         </div>
-        <input id="edit-input" type="text" class="form-control" placeholder="Enter your image title">
-        <div id="edit-button" class="btn btn-primary edit-button"><i class="fa fa-pencil fa-3"></i> Edit image</div>
+        <input id="edit-input" type="text" class="form-control" data-translate="[placeholder]widgets.gallery.dataSource.edit.titlePlaceholder" placeholder="Enter your image title">
+        <div id="edit-button" class="btn btn-primary edit-button" data-translate="[html]widgets.gallery.dataSource.edit.action"><i class="fa fa-pencil fa-3"></i> Edit image</div>
       </div>
     </div>
   </div>
